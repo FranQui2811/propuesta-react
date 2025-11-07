@@ -1,0 +1,23 @@
+{
+  "name": "asistencia---backend",
+  "version": "1.0.0",
+  "description": "App para listado de asistencias",
+  "license": "MIT",
+  "author": "Alexander Rios",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node Backend/server.js",
+    "server": "nodemon Backend/server.js"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
