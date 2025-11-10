@@ -1,0 +1,202 @@
+:root {
+  --primary-cream: #f5f0e1;
+  --secondary-cream: #e6dcc6;
+  --accent-cream: #d4c5a9;
+  --text-dark: #4a4a4a;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --brown-primary: #8b7355;
+  --brown-dark: #6d5a47;
+}
+
+.register-assist {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--primary-cream);
+  padding: 20px;
+}
+
+/* shared card style used by header and container to avoid duplication */
+.card {
+  background-color: #fff;
+  padding: 30px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px var(--shadow);
+  border: 1px solid var(--accent-cream);
+}
+
+.assist-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* home button (simple icon) */
+.home-btn {
+  background: transparent;
+  border: none;
+  color: var(--brown-primary);
+  cursor: pointer;
+  padding: 6px;
+  margin-right: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.home-btn svg { display: block; }
+
+.header-info h1 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.muted-text {
+  margin: 8px 0 5px 0;
+  font-size: 14px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+
+.assist-container {
+  /* reuse .card visual but with slightly smaller padding */
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px var(--shadow);
+  border: 1px solid var(--accent-cream);
+  flex: 1;
+  overflow-x: auto;
+}
+
+.students-list, .students-table {
+  width: 100%;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.students-table thead {
+  background-color: var(--secondary-cream);
+  border-bottom: 2px solid var(--accent-cream);
+}
+
+.students-table thead th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  /* color: red; */
+}
+
+.students-table tbody tr {
+  border-bottom: 1px solid var(--accent-cream);
+  transition: background-color 0.2s ease;
+}
+
+.students-table tbody tr:hover {
+  background-color: var(--primary-cream);
+}
+
+
+
+
+.cell-padding { padding: 12px 15px; }
+.student-row:hover { background-color: var(--row-accent, var(--primary-cream)); }
+.student-name { font-weight: 500; color: var(--text-dark); min-width: 200px; }
+.attendance-cell { text-align: center; }
+
+.attendance-radio { cursor: pointer; width: 18px; height: 18px; margin: 0; accent-color: var(--brown-primary); }
+.attendance-radio:hover { accent-color: var(--brown-dark); }
+
+.excuse-cell { min-width: 200px; }
+
+.excuse-input { width: 100%; padding: 8px 12px; border: 1px solid var(--accent-cream); border-radius: 6px; font-size: 13px; font-family: inherit; transition: border-color 0.2s ease, box-shadow 0.2s ease; color: var(--text-dark); }
+
+.excuse-input::placeholder {
+  color: #999;
+}
+
+.excuse-input:focus {
+  outline: none;
+  border-color: var(--accent-cream);
+  box-shadow: 0 0 0 3px rgba(212, 197, 169, 0.2);
+}
+
+.assist-actions { display: flex; justify-content: center; gap: 15px; margin-top: 30px; padding: 20px; }
+
+.btn-submit { padding: 12px 40px; font-size: 16px; font-weight: 600; color: #fff; background-color: var(--brown-primary); border: 1px solid var(--brown-dark); border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease; box-shadow: 0 4px 6px var(--shadow); }
+.btn-submit:hover { background-color: var(--brown-dark); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
+.btn-submit:active { transform: translateY(1px); box-shadow: 0 4px 6px var(--shadow); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .register-assist {
+    padding: 15px;
+  }
+
+  .assist-header {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-info h1 {
+    font-size: 22px;
+  }
+
+  .students-table {
+    font-size: 12px;
+  }
+
+
+  .student-name { min-width: 150px; font-size: 13px; }
+  .cell-padding { padding: 10px 8px; }
+  .excuse-cell { min-width: 150px; }
+  .excuse-input { padding: 6px 8px; font-size: 12px; }
+
+  .btn-submit {
+    padding: 10px 30px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-assist {
+    padding: 10px;
+  }
+
+  .assist-header {
+    padding: 15px 10px;
+    margin-bottom: 15px;
+  }
+
+  .header-info h1 {
+    font-size: 18px;
+  }
+
+  .assist-container {
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  .students-table {
+    font-size: 11px;
+    min-width: 600px;
+  }
+
+  .btn-submit {
+    padding: 10px 25px;
+    font-size: 13px;
+  }
+}
