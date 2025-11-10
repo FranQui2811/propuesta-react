@@ -2,11 +2,12 @@
 import {Route, Routes} from 'react-router-dom'
 
 // import { Inicio } from './Components/Page/Inicio/Inicio';
-import { MainLogIn } from './Components/Page/LogIn/MainLogIn';
+// import { MainLogIn } from './Components/Page/LogIn/MainLogIn';
 import { RecoverPassword } from './Components/Page/RecoverPassword/RecoverPassword';
 import { HomeAdmin } from './Components/Page/Admin/HomeAdmin/HomeAdmin';
 import { HomeUser } from './Components/Page/User/HomeUser/HomeUser';
 import { HomeTeacher } from './Components/Page/Teacher/HomeTeacher/HomeTeacher';
+import { RegisterAssist } from './Components/Page/Teacher/RegisterAssist/RegisterAssist';
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<Inicio/>}></Route> */}
 
-        <Route path="/" element={<MainLogIn/>}></Route>
+        <Route path="/" element={<RegisterAssist/>}></Route>
+        {/* <Route path="/" element={<MainLogIn/>}></Route> */}
         <Route path="/HomeAdmin" element={<HomeAdmin/>}></Route>
         <Route path="/HomeUser" element={<HomeUser/>}></Route>
         <Route path="/HomeTeacher" element={<HomeTeacher/>}></Route>
