@@ -1,0 +1,96 @@
+/* ManageCourses.css */
+.manage-courses-container {
+  background: #f5f0e1;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.manage-courses-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.back-button {
+  background: #d4c5a9;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #4a4a4a;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background: #c4b59a;
+}
+
+.manage-courses-container h1 {
+  color: #4a4a4a;
+  margin-top: 0;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.course-card {
+  background: #fff;
+  border: 1px solid #e6dcc6;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.course-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.course-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: #4a4a4a;
+  font-size: 1.1rem;
+}
+
+.course-info {
+  margin: 0.5rem 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.course-info strong {
+  color: #4a4a4a;
+}
+
+.view-students-btn {
+  margin-top: 1rem;
+  background: #d4c5a9;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #4a4a4a;
+  font-weight: 500;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.view-students-btn:hover {
+  background: #c4b59a;
+}
+
+@media (max-width: 600px) {
+  .manage-courses-container {
+    padding: 1rem;
+  }
+
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
