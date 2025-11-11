@@ -1,0 +1,58 @@
+/* Asegura que el contenedor principal sea column para HomeTeacher */
+.admin-container {
+  flex-direction: column !important;
+  gap: 0;
+}
+/* HomeTeacher.css */
+:root {
+  --primary-cream: #f5f0e1;
+  --secondary-cream: #e6dcc6;
+  --accent-cream: #d4c5a9;
+  --text-dark: #4a4a4a;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+.teacher-header {
+  width: 100%;
+  background: var(--secondary-cream);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+.teacher-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.teacher-header-title {
+  margin: 0;
+  color: var(--text-dark);
+  font-size: 1.35rem;
+}
+.teacher-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.teacher-header-name {
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .teacher-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .teacher-header-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
