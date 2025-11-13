@@ -77,6 +77,14 @@ const loginUserAdmin = asyncHandler(async(req, res) => {
     }
 })
 
+const getProfessors = asyncHandler(async (req, res) => {
+    
+    // Buscar solo usuarios que tengan el rol 'Professor'
+    const professors = await UserAdmin.find({ role: 'Professor' }).select('-password'); 
+
+    res.status(200).json(professors);
+});
+
 const getAdminMe = asyncHandler(async(req, res) => {
     // req.user es inyectado por el middleware 'protect'
     const { _id, fullname, email, role } = req.user;
@@ -92,4 +100,5 @@ module.exports = {
     registerUserAdmin,
     loginUserAdmin,
     getAdminMe,
+    getProfessors,
 }
