@@ -1,10 +1,11 @@
 import {Route, Routes} from 'react-router-dom'
 
 // import { Inicio } from './Components/Page/Inicio/Inicio';
-// import { MainLogIn } from './Components/Page/LogIn/MainLogIn';
+import { MainLogIn } from './Components/Page/LogIn/MainLogIn';
 import { RecoverPassword } from './Components/Page/RecoverPassword/RecoverPassword';
 import { HomeAdmin } from './Components/Page/Admin/HomeAdmin/HomeAdmin';
 import { HomeUser } from './Components/Page/User/HomeUser/HomeUser';
+import { MyCourses } from './Components/Page/User/MyCourses/MyCourses';
 import { HomeTeacher } from './Components/Page/Teacher/HomeTeacher/HomeTeacher';
 import { RegisterAssist } from './Components/Page/Teacher/RegisterAssist/RegisterAssist';
 import { ManageCourses } from './Components/Page/Teacher/ManageCourses/ManageCourses';
@@ -18,10 +19,11 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<Inicio/>}></Route> */}
 
-        <Route path="/" element={<RegisterAssist/>}></Route>
-        {/* <Route path="/" element={<MainLogIn/>}></Route> */}
+        <Route path="/RegisterAssist" element={<RegisterAssist/>}></Route>
+        <Route path="/" element={<MainLogIn/>}></Route>
         <Route path="/HomeAdmin" element={<HomeAdmin/>}></Route>
         <Route path="/HomeUser" element={<HomeUser/>}></Route>
+        <Route path="/User/MyCourses" element={<MyCourses />} />
         <Route path="/HomeTeacher" element={<HomeTeacher/>}></Route>
         <Route path="/Teacher/Courses" element={<ManageCourses/>}></Route>
         <Route path="/Teacher/Attendance" element={<TakeAttendance/>}></Route>

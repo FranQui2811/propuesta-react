@@ -1,0 +1,115 @@
+/* Contenedor principal */
+.home-user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: flex-start;
+  padding-top: 3rem;
+}
+
+/* Paleta azul moderna */
+:root {
+  --primary-blue: #e8f0fe;
+  --secondary-blue: #d2e3fc;
+  --accent-blue: #a8c7fa;
+  --text-dark: #2b2b2b;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado */
+.home-user-header {
+  width: 100%;
+  background: var(--secondary-blue);
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.home-user-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.home-user-title {
+  margin: 0;
+  color: var(--text-dark);
+  font-size: 1.35rem;
+}
+
+.home-user-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.home-user-name {
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.home-user-logout {
+  background: var(--accent-blue);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--text-dark);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.home-user-logout:hover {
+  background: #90b6f8;
+  transform: scale(1.03);
+}
+
+/* Contenido principal */
+.home-user-main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Tarjetas horizontales */
+.home-user-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+.home-user-cards > * {
+  flex: 1;
+  max-width: 300px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .home-user-cards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .home-user-cards > * {
+    max-width: 100%;
+  }
+
+  .home-user-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .home-user-header-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
