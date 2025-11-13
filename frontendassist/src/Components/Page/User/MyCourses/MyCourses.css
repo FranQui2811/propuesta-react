@@ -1,0 +1,128 @@
+/* Contenedor principal (mantiene la estructura de MyCourses) */
+.attendance-container {
+    padding: 20px;
+    /* Usa el mismo fondo para consistencia */
+    background-color: #f7f9fc; 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* Wrapper para limitar el ancho y centrar (mantiene la estructura) */
+.attendance-wrapper {
+    width: 100%;
+    max-width: 1000px; /* Un poco más estrecho, ideal para tablas */
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Botón de Volver (mantiene la estética de MyCourses) */
+.back-button {
+    background: none;
+    border: 1px solid #007bff; /* Color primario */
+    color: #007bff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* --- Estilos Específicos de la Tabla de Asistencia --- */
+
+.attendance-table-container {
+    overflow-x: auto; /* Para manejo en móviles/pantallas pequeñas */
+    background: #ffffff; /* Fondo blanco como las tarjetas */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Añadimos padding para separar la tabla del borde del contenedor */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Encabezado de la tabla */
+table thead th {
+    background-color: #f0f0f0; /* Fondo claro para el encabezado */
+    color: #333;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 1em;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Cuerpo de la tabla */
+table tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+table tbody tr:last-child {
+    border-bottom: none; /* Eliminar borde inferior de la última fila */
+}
+
+table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+table tbody td {
+    padding: 12px 15px;
+    color: #555;
+    font-size: 0.95em;
+    vertical-align: middle;
+}
+
+/* Estilos para resaltar datos importantes */
+.attended {
+    color: #28a745; /* Verde (como el botón de materiales) */
+    font-weight: bold;
+}
+
+.absences {
+    color: #dc3545; /* Rojo para alerta */
+    font-weight: bold;
+}
+
+/* Estilo para las filas que tienen un índice de ausencias que requiere atención */
+tr.low-attendance {
+    background-color: #fff8e1; /* Amarillo muy suave */
+}
+
+/* Botón de Detalles (adaptado del botón de materiales, pero más pequeño/gris) */
+.details-btn {
+    background-color: #007bff; /* Color primario */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.details-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Mensaje sin datos (mantiene la estructura de no-courses) */
+.no-data {
+    text-align: center;
+    padding: 30px;
+    color: #6c757d;
+    font-size: 1.2em;
+    background: #e9ecef;
+    border-radius: 8px;
+    margin-top: 30px;
+}
