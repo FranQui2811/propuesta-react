@@ -25,17 +25,17 @@ export const HomeUser = () => {
             description: 'Revisa tu historial de asistencias y ausencias por materia.',
             icon: '📅',
             actions: [
-                { label: 'Ver Asistencia', onClick: () => navigate('/User/Attendance') },
+                { label: 'Ver Asistencia', onClick: () => navigate('/User/AttendanceHistoryUser') },
             ],
         },
-        {
-            title: 'Perfil y Configuración',
-            description: 'Actualiza tu información personal o cambia tu contraseña.',
-            icon: '⚙️',
-            actions: [
-                { label: 'Editar Perfil', onClick: () => navigate('/User/Profile') },
-            ],
-        },
+        // {
+        //     title: 'Perfil y Configuración',
+        //     description: 'Actualiza tu información personal o cambia tu contraseña.',
+        //     icon: '⚙️',
+        //     actions: [
+        //         { label: 'Editar Perfil', onClick: () => navigate('/User/Profile') },
+        //     ],
+        // },
     ];
 
     const handleLogout = () => {
