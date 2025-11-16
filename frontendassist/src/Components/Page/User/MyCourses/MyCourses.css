@@ -1,128 +1,128 @@
-/* Contenedor principal (mantiene la estructura de MyCourses) */
-.attendance-container {
+/* ============================
+   CONTENEDOR PRINCIPAL
+=============================== */
+.my-courses-container-user {
     padding: 20px;
-    /* Usa el mismo fondo para consistencia */
-    background-color: #f7f9fc; 
+    /* Fondo con degradado azul */
+    background: linear-gradient(135deg, #b8e1f7, #7ab8e6, #5e8cc7);
     min-height: 100vh;
     display: flex;
     justify-content: center;
 }
 
-/* Wrapper para limitar el ancho y centrar (mantiene la estructura) */
-.attendance-wrapper {
+.my-courses-wrapper-user {
     width: 100%;
-    max-width: 1000px; /* Un poco más estrecho, ideal para tablas */
+    max-width: 1000px;
+    padding: 30px; /* Aumenta el padding dentro del wrapper */
+    border-radius: 15px;
+    /* === CAMBIO CLAVE 3: Fondo del Wrapper === */
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semi-transparente para un look limpio */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    color: #333;
+/* ============================
+   BOTÓN VOLVER
+=============================== */
+.back-button-user {
+    /* === CAMBIO CLAVE 1: Estilo del botón (Beige/Arena) === */
+    background-color: #d8c2a8; /* Color beige/arena */
+    border: none; /* Eliminar el borde */
+    color: #4c3f2b; /* Color de texto oscuro para contraste */
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
     margin-bottom: 25px;
+    margin-left: 0; /* Aseguramos que esté alineado con el borde del wrapper */
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.back-button-user:hover {
+    background-color: #c8b298; /* Un tono más oscuro al pasar el ratón */
+    color: #4c3f2b;
+}
+
+/* ============================
+   TÍTULO
+=============================== */
+h1 {
+    color: #222;
     text-align: center;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
+    padding-bottom: 15px; /* Más espacio para la barra */
+    margin-top: 0;
+    margin-bottom: 0; /* Eliminamos el margin-bottom del h1 */
 }
 
-/* Botón de Volver (mantiene la estética de MyCourses) */
-.back-button {
-    background: none;
-    border: 1px solid #007bff; /* Color primario */
-    color: #007bff;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: background-color 0.3s, color 0.3s;
+/* === CAMBIO CLAVE 2: Barra de Separación debajo del Título === */
+.title-separator-user {
+    width: 400px; /* Ancho de la barra */
+    height: 4px; /* Altura de la barra */
+    background-color: #7ab8e6; /* Color azul, puedes cambiarlo a #333 si quieres negro */
+    margin: 0px auto 30px auto; /* Centra la barra y añade espacio debajo */
+    border-radius: 2px;
 }
 
-.back-button:hover {
-    background-color: #007bff;
-    color: white;
+/* ============================
+   LISTA DE CURSOS (GRID DE 3)
+=============================== */
+.courses-row-user {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    padding: 10px;
+    margin: 0 auto;
 }
 
-/* --- Estilos Específicos de la Tabla de Asistencia --- */
 
-.attendance-table-container {
-    overflow-x: auto; /* Para manejo en móviles/pantallas pequeñas */
-    background: #ffffff; /* Fondo blanco como las tarjetas */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* Añadimos padding para separar la tabla del borde del contenedor */
+/* ============================
+   TARJETAS
+=============================== */
+.course-card-user {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    /* Box shadow más suave para complementar el fondo */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-/* Encabezado de la tabla */
-table thead th {
-    background-color: #f0f0f0; /* Fondo claro para el encabezado */
+.course-card-user h3 {
+    margin-top: 0;
     color: #333;
-    padding: 12px 15px;
-    text-align: left;
-    font-size: 1em;
-    border-bottom: 2px solid #ddd;
+    font-size: 1.2rem;
 }
 
-/* Cuerpo de la tabla */
-table tbody tr {
-    border-bottom: 1px solid #eee;
+.course-info-user strong {
+    color: #000;
 }
 
-table tbody tr:last-child {
-    border-bottom: none; /* Eliminar borde inferior de la última fila */
+/* ============================
+   RESPONSIVE — AJUSTE DE GRID
+=============================== */
+
+/* Tablet/Pantallas medianas: 2 columnas */
+@media (max-width: 900px) {
+    .courses-row-user {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px; 
+    }
 }
 
-table tbody tr:hover {
-    background-color: #f9f9f9;
+/* Móviles: 1 columna */
+@media (max-width: 600px) {
+    .my-courses-wrapper-user {
+        padding: 20px; /* Reducimos el padding en móvil */
+    }
+    /* Estilo General (Aplicado también en PC) */
+.title-separator-user {
+    width: 200px; /* Ancho para PC/Tablet */
+    height: 4px; 
+    background-color: #7ab8e6; 
+    margin: 0px auto 30px auto; /* Crucial para centrar y añadir espacio */
+    border-radius: 2px;
 }
-
-table tbody td {
-    padding: 12px 15px;
-    color: #555;
-    font-size: 0.95em;
-    vertical-align: middle;
-}
-
-/* Estilos para resaltar datos importantes */
-.attended {
-    color: #28a745; /* Verde (como el botón de materiales) */
-    font-weight: bold;
-}
-
-.absences {
-    color: #dc3545; /* Rojo para alerta */
-    font-weight: bold;
-}
-
-/* Estilo para las filas que tienen un índice de ausencias que requiere atención */
-tr.low-attendance {
-    background-color: #fff8e1; /* Amarillo muy suave */
-}
-
-/* Botón de Detalles (adaptado del botón de materiales, pero más pequeño/gris) */
-.details-btn {
-    background-color: #007bff; /* Color primario */
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
-}
-
-.details-btn:hover {
-    background-color: #0056b3;
-}
-
-/* Mensaje sin datos (mantiene la estructura de no-courses) */
-.no-data {
-    text-align: center;
-    padding: 30px;
-    color: #6c757d;
-    font-size: 1.2em;
-    background: #e9ecef;
-    border-radius: 8px;
-    margin-top: 30px;
+    
+    .courses-row-user {
+        grid-template-columns: 1fr; 
+        gap: 15px; 
+    }
 }
