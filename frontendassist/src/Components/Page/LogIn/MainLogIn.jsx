@@ -58,38 +58,30 @@ export const MainLogIn = () => {
   const getData = async(e) =>{
     e.preventDefault()
     const Usuario = {
-    email
+    email, password
   };
       
     try {
-      const response = await axios.post("https://backend-space-parking.onrender.com/api/users/rolUser", Usuario);
-      let userRole = response.data.roles
-      const typerole = userRole.slice(-1)
-      onSubmitLogin(typerole)
+      // const response = await axios.post("https://backend-space-parking.onrender.com/api/users/rolUser", Usuario);
+      const response = await axios.post("http://localhost:5000/api/userAdmin/loginAdmin", Usuario);
+      let userRole = response.data.role
+      if (userRole === 'Admin') {
+            navigate(`/HomeAdmin/`);
+      } else if (userRole === 'Professor') {
+            navigate(`/HomeTeacher/`);}
+      else{
+          navigate(`/HomeStudent/`);
+          }
+      // onSubmitLogin(typerole)
+      console.log(userRole);
+      console.log(response.data);
+      
+      
     } catch (error) {
       incorrect()
     }
     }
 
-      const onSubmitLogin = async(typerole) => {
-
-        const Usuario = {
-          email, password
-        };
-       
-        try {
-            const response = await axios.post("https://backend-space-parking.onrender.com/api/users/login", Usuario);
-            updateUserData(response.data);
-            if (typerole === '5') {
-              navigate(`/HomeUser/`);
-            }else {
-              navigate(`/HomeParking/`);
-            }
-            correct()
-          } catch (error) {
-            incorrect()
-          }
-        };
 
   return (
   <>
