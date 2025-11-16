@@ -26,7 +26,8 @@ app.use(express.urlencoded({ extended : false }));
 // Definición de Rutas
 app.use('/api/student', require('./routes/studentRoutes'));
 app.use('/api/userAdmin', require('./routes/userAdminRoutes'));
-app.use('/api/course', require('./routes/courseRoutes'));
+app.use('/api/course', require('./routes/courseRoutes'));      
+app.use('/api/attendance', require('./routes/attendanceRoutes'));
 
 // Middleware de Manejo de Errores (debe ir al final de las rutas)
 app.use(errorHandler);
