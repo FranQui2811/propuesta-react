@@ -6,6 +6,7 @@ import { RecoverPassword } from './Components/Page/RecoverPassword/RecoverPasswo
 import { HomeAdmin } from './Components/Page/Admin/HomeAdmin/HomeAdmin';
 import { HomeUser } from './Components/Page/User/HomeUser/HomeUser';
 import { MyCourses } from './Components/Page/User/MyCourses/MyCourses';
+import { AttendanceHistoryUser } from './Components/Page/User/AttendanceHistoryUser/AttendanceHistoryUser';
 import { HomeTeacher } from './Components/Page/Teacher/HomeTeacher/HomeTeacher';
 import { RegisterAssist } from './Components/Page/Teacher/RegisterAssist/RegisterAssist';
 import { ManageCourses } from './Components/Page/Teacher/ManageCourses/ManageCourses';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/HomeAdmin" element={<HomeAdmin/>}></Route>
         <Route path="/HomeUser" element={<HomeUser/>}></Route>
         <Route path="/User/MyCourses" element={<MyCourses />} />
+        <Route path="/User/AttendanceHistoryUser" element={<AttendanceHistoryUser/>} />
         <Route path="/HomeTeacher" element={<HomeTeacher/>}></Route>
         <Route path="/Teacher/Courses" element={<ManageCourses/>}></Route>
         <Route path="/Teacher/Attendance" element={<TakeAttendance/>}></Route>

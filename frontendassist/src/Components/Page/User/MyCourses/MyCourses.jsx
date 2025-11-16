@@ -12,75 +12,70 @@ export const MyCourses = () => {
   const courses = [
     { 
       id: 1, 
-      name: 'Matemáticas 10A', 
+      name: 'Calculo Avanzado', 
       teacher: 'Prof. Ana López', 
-      schedule: 'Lunes y Miércoles 08:00-10:00', 
       materials: 5 
     },
     { 
       id: 2, 
-      name: 'Español 10B', 
+      name: 'Programación Web', 
       teacher: 'Prof. Carlos García', 
-      schedule: 'Martes y Jueves 10:00-12:00', 
       materials: 8 
     },
     { 
       id: 3, 
-      name: 'Inglés 10C', 
+      name: 'Bases de Datos', 
       teacher: 'Prof. Laura Smith', 
-      schedule: 'Lunes, Miércoles y Viernes 14:00-15:00', 
       materials: 3 
     },
-    // {
-    //   id: 3, 
-    //   name: 'Inglés 10C', 
-    //   teacher: 'Prof. Laura Smith', 
-    //   schedule: 'Lunes, Miércoles y Viernes 14:00-15:00', 
-    //   materials: 3 
-    // },
+    { 
+      id: 4, 
+      name: 'Estructuras de Datos', 
+      teacher: 'Prof. Juan Pérez', 
+      materials: 10 
+    },
+    { 
+      id: 5, 
+      name: 'Álgebra Lineal', 
+      teacher: 'Prof. Elena Ríos', 
+      materials: 4 
+    },
   ];
 
   return (
-    <div className="my-courses-container">
-      <div className="my-courses-wrapper">
+    <div className="my-courses-container-user">
+      <div className="my-courses-wrapper-user">
         <button
           onClick={() => navigate(-1)}
-          className="back-button"
+          className="back-button-user"
         >
           ← Volver
         </button>
 
         <h1>Mis Cursos Inscritos</h1>
+        <div className="title-separator-user"></div>
 
         {/* Verifica si hay cursos para mostrar */}
         {courses.length === 0 ? (
-          <p className="no-courses">No estás inscrito en ningún curso actualmente.</p>
+          <p className="no-courses-user">No estás inscrito en ningún curso actualmente.</p>
         ) : (
-          <div className="courses-grid">
+          /* === CONTENEDOR HORIZONTAL === */
+          <div className="courses-row-user">
             {courses.map((course) => (
-              <div key={course.id} className="course-card">
+              <div key={course.id} className="course-card-user">
                 <h3>{course.name}</h3>
                 
-                <p className="course-info">
+                <p className="course-info-user">
                   <strong>Profesor:</strong> {course.teacher}
                 </p>
-                <p className="course-info">
-                  <strong>Horario:</strong> {course.schedule}
-                </p>
-                <p className="course-info">
+
+                <p className="course-info-user">
                   <strong>Materiales:</strong> {course.materials} archivos
                 </p>
-                
-                {/* Botón para ver los materiales del curso */}
-                {/* <button
-                  onClick={() => alert(`Navegando a materiales de ${course.name}`)}
-                  className="view-materials-btn"
-                >
-                  Ver Materiales
-                </button> */}
               </div>
             ))}
           </div>
+          /* === FIN CONTENEDOR HORIZONTAL === */
         )}
       </div>
     </div>

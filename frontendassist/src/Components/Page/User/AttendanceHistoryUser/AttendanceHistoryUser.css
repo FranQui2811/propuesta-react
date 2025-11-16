@@ -1,0 +1,174 @@
+/* ============================
+   CONTENEDOR PRINCIPAL
+=============================== */
+.attendance-history-container-User {
+    padding: 20px;
+    /* Fondo con degradado azul (mismo estilo que MyCourses) */
+    background: linear-gradient(135deg, #b8e1f7, #7ab8e6, #5e8cc7);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.attendance-history-wrapper-User {
+    width: 100%;
+    max-width: 900px; /* Ancho para centrar la tabla */
+    padding: 30px;
+    border-radius: 15px;
+    /* Fondo del wrapper blanco semi-transparente */
+    background-color: rgba(255, 255, 255, 0.9); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ============================
+   BOTÓN VOLVER (Estilo Arena)
+=============================== */
+.back-button-User {
+    background-color: #d8c2a8; /* Color beige/arena */
+    border: none;
+    color: #4c3f2b; 
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.back-button-User:hover {
+    background-color: #c8b298; 
+    color: #4c3f2b;
+}
+
+/* ============================
+   TÍTULO Y SEPARADOR
+=============================== */
+.attendance-title-User {
+    color: #222;
+    text-align: center;
+    padding-bottom: 15px; 
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.8rem;
+}
+
+.title-separator-User {
+    width: 400px; 
+    height: 4px; 
+    background-color: #7ab8e6; 
+    margin: 0px auto 30px auto; /* Centra la barra y añade espacio debajo */
+    border-radius: 2px;
+}
+
+/* ============================
+   TABLA DE ASISTENCIA
+=============================== */
+.attendance-table-container-User {
+    width: 100%;
+    overflow-x: auto; /* Para scroll en pantallas muy pequeñas */
+}
+
+.attendance-table-User {
+    width: 100%;
+    border-collapse: collapse; /* Elimina los espacios dobles entre bordes */
+    /* background-color: white; (Ya lo tiene el wrapper, pero se puede añadir) */
+    border-radius: 8px; /* Bordes redondeados para la tabla completa */
+    overflow: hidden; /* Necesario para que el border-radius se aplique */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Encabezados de la tabla */
+.attendance-table-User th {
+    /* Fondo con un toque de azul para el encabezado */
+    background-color: #e6f0fa; 
+    color: #333;
+    padding: 15px 12px;
+    text-align: center; 
+    border-bottom: 2px solid #cce0f5; /* Línea separadora azul claro */
+    font-weight: 700;
+}
+
+/* El primer encabezado (Materia) debe ir a la izquierda */
+.attendance-table-User th:first-child {
+    text-align: left;
+    width: 40%; /* Dar más espacio a la materia */
+}
+
+/* Filas del cuerpo de la tabla */
+.attendance-table-User td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: center; 
+    color: #555;
+}
+
+/* La primera celda (Materia) debe ir a la izquierda y tener estilo */
+.attendance-table-User td:first-child {
+    text-align: left; 
+    font-weight: 600;
+    color: #333;
+}
+
+/* Estilo para filas pares (opcional, para mejor legibilidad) */
+.attendance-table-User tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* Estilo al pasar el ratón por la fila */
+.attendance-table-User tbody tr:hover {
+    background-color: #f5f5f5;
+    transition: background-color 0.2s;
+}
+
+/* Quitar el borde inferior de la última fila */
+.attendance-table-User tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estilo para porcentaje bajo (si lo usas) */
+.low-attendance {
+    color: #dc3545; /* Rojo de advertencia */
+    font-weight: bold;
+}
+
+/* ============================
+   RESPONSIVE DESIGN (Corregido y Ajustado)
+=============================== */
+
+/* Tabletas y pantallas medianas (max-width: 900px) */
+@media (max-width: 900px) {
+    .attendance-history-wrapper-User {
+        max-width: 700px;
+        padding: 30px 20px; 
+    }
+
+    .title-separator-User {
+        width: 250px; 
+    }
+    
+    .attendance-table-User th, 
+    .attendance-table-User td {
+        padding: 12px 10px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Dispositivos Móviles (max-width: 600px) */
+@media (max-width: 600px) {
+    .attendance-history-wrapper-User {
+        /* Si usaste la Opción A (centrado de bloque), no necesitas el margin aquí */
+        /* Si usaste la Opción B (Flexbox), ajusta el margin: */
+        margin: 1px auto; /* Centrado y margen */
+        margin-bottom: 200px;
+        padding: 20px 15px;
+    }
+
+    /* ... el resto de estilos de la tabla ... */
+
+    .title-separator-User {
+        /* Barra de separación pequeña */
+        width: 80px; 
+        margin-bottom: 20px;
+    }
+}
