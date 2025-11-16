@@ -7,5 +7,7 @@ router.route('/')
     .get(protect, getCourses) 
     .post(protect, authorize(['Admin']), setCourse) 
 
+router.route('/:id/enroll')
+    .put(protect, authorize(['Admin', 'Professor']), enrollStudent) 
 
 module.exports = router;

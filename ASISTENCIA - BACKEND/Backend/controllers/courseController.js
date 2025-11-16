@@ -74,10 +74,66 @@ const setCourse = asyncHandler(async (req, res) => {
     }
 });
 
+const enrollStudent = asyncHandler(async (req, res) => {
+    const course = await Course.findById(req.params.id);
+    const { studentId } = req.body; // Esto puede ser un ID único o un array de IDs
 
+    if (!course) {
+        res.status(404);
+        throw new Error('Course not found');
+    }
+    
+    // Si el usuario es Profesor, solo puede matricular en sus cursos
+    if (req.user.role === 'Professor' && course.professor.toString() !== req.user.id.toString()) {
+        res.status(403);
+        throw new Error('Not authorized to modify this course.');
+    }
+
+    // 1. Convertir studentId a un array si no lo es
+    const studentIdsToEnroll = Array.isArray(studentId) ? studentId : [studentId];
+    let studentsEnrolledCount = 0;
+
+    if (studentIdsToEnroll.length === 0) {
+        res.status(400);
+        throw new Error('Please provide at least one studentId.');
+    }
+
+    // 2. Iterar sobre los IDs y matricularlos
+    for (const id of studentIdsToEnroll) {
+        // Validación del estudiante
+        const student = await UserAdmin.findOne({ _id: id, role: 'Student' });
+        if (!student) {
+            console.warn(`Skipping ID ${id}: User not found or is not a Student.`);
+            continue; // Saltar al siguiente ID
+        }
+
+        // Matricular si no está ya matriculado
+        if (!course.students.includes(id)) {
+            course.students.push(id);
+            studentsEnrolledCount++;
+        }
+    }
+    
+    await course.save();
+
+    if (studentsEnrolledCount > 0) {
+        // Recargar el curso para la respuesta y mostrar los alumnos matriculados
+        const updatedCourse = await Course.findById(course._id)
+            .populate('professor', 'fullname email')
+            .populate('students', 'fullname email');
+            
+        res.status(200).json({ 
+            message: `${studentsEnrolledCount} student(s) enrolled successfully.`,
+            course: updatedCourse
+        });
+    } else {
+        res.status(200).json({ message: 'No new students were enrolled (They might already be in the course).' });
+    }
+});
 
 
 module.exports = {
     getCourses,
     setCourse,
+    enrollStudent
 };
