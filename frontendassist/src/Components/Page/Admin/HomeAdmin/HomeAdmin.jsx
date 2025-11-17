@@ -17,8 +17,7 @@ export const HomeAdmin = () => {
     const renderModuleContent = () => {
         if (!activeModule) {
             return <div className="welcome-message">
-                <h2>Bienvenido al Panel de Administración</h2>
-                <p>Seleccione un módulo para comenzar</p>
+                
             </div>;
         }
 
@@ -56,8 +55,13 @@ export const HomeAdmin = () => {
         );
     };
 
-    return (
-        <div className="admin-container">
+return (
+    <div className="admin-container">
+        <header className="admin-header">
+            <p className="admin-header-title"> 🏠 Inicio Administrador</p>
+            <button onClick={() => {localStorage.removeItem('userData'); window.location.href = '/';}} className="btn-sesion" >Cerrar sesión</button>
+        </header>
+        <div className='contMainAdmin'>
             <div className="admin-sidebar">
                 <h1>Panel Admin</h1>
                 <div className="module-buttons">
@@ -77,6 +81,7 @@ export const HomeAdmin = () => {
                 {renderModuleContent()}
             </div>
         </div>
+    </div>
     );
 };
 

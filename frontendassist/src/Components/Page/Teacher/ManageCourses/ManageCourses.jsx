@@ -1,23 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import './ManageCourses.css';
+import { UserDataContext } from '../../Context/UserDataProvider';
 
 export const ManageCourses = () => {
   const navigate = useNavigate();
+  const { userData } = useContext(UserDataContext);
+  const [courses, setCourses] = useState([]);
 
-  // Datos dummy de cursos
-  const courses = [
-    { id: 1, name: 'Matemáticas 10A', subject: 'Matemáticas', schedule: 'Lunes y Miércoles 08:00-10:00', students: 25 },
-    { id: 2, name: 'Español 10B', subject: 'Español', schedule: 'Martes y Jueves 10:00-12:00', students: 28 },
-    { id: 3, name: 'Inglés 10C', subject: 'Inglés', schedule: 'Lunes, Miércoles y Viernes 14:00-15:00', students: 22 },
-    { id: 4, name: 'Ciencias 11A', subject: 'Ciencias Naturales', schedule: 'Martes y Jueves 13:00-15:00', students: 30 },
-  ];
+  useEffect(() => {
+    const fetchCourses = async () => {
+      if (!userData?.token) return;
+      // const base = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      try {
+        // Mostrar SweetAlert de carga
+        Swal.fire({
+          title: 'Cargando cursos...',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+
+        const res = await axios.get(`http://localhost:5000/api/course`, {
+          headers: { Authorization: `Bearer ${userData.token}` },
+        });
+        setCourses(res.data || []);
+        Swal.close();
+      } catch (err) {
+        Swal.close();
+        const message = err.response?.data?.message || err.message || 'Error al obtener cursos';
+        Swal.fire({ icon: 'error', title: 'Error', text: message });
+      }
+    };
+
+    fetchCourses();
+  }, [userData]);
 
   return (
     <div className="manage-courses-container">
       <div className="manage-courses-wrapper">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/HomeTeacher')}
           className="back-button"
         >
           ← Volver
@@ -26,20 +52,29 @@ export const ManageCourses = () => {
         <h1>Gestión de Cursos Asignados</h1>
 
         <div className="courses-grid">
+          {courses.length === 0 && <p>No se encontraron cursos asignados.</p>}
+
           {courses.map((course) => (
-            <div key={course.id} className="course-card">
+            <div key={course._id || course.id} className="course-card">
               <h3>{course.name}</h3>
               <p className="course-info">
-                <strong>Materia:</strong> {course.subject}
+                <strong>Profesor:</strong> {course.professor?.fullname || '—'}
               </p>
+              {course.subject && (
+                <p className="course-info">
+                  <strong>Materia:</strong> {course.subject}
+                </p>
+              )}
+              {course.schedule && (
+                <p className="course-info">
+                  <strong>Horario:</strong> {course.schedule}
+                </p>
+              )}
               <p className="course-info">
-                <strong>Horario:</strong> {course.schedule}
-              </p>
-              <p className="course-info">
-                <strong>Estudiantes:</strong> {course.students}
+                <strong>Estudiantes:</strong> {Array.isArray(course.students) ? course.students.length : (course.students || 0)}
               </p>
               <button
-                onClick={() => alert(`Ver estudiantes de ${course.name}`)}
+                onClick={() => navigate(`/Teacher/Courses/${course._id || course.id}`)}
                 className="view-students-btn"
               >
                 Ver Estudiantes

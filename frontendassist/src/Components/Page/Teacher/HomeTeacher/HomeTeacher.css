@@ -22,26 +22,48 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 6px var(--shadow);
+  font-size: 1.5rem;
+  font-weight: bolder;
 }
-.teacher-header-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+
 .teacher-header-title {
-  margin: 0;
   color: var(--text-dark);
-  font-size: 1.35rem;
 }
-.teacher-header-right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
+
 .teacher-header-name {
   color: var(--text-dark);
-  font-weight: 500;
-  font-size: 1.1rem;
+}
+.btn-sesion {
+  background: var(--accent-cream);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-sesion:hover {
+  background: #c4b59a;
+}
+
+/* Grid de cards - Más grande en desktop */
+.admin-content {
+  width: 100%;
+  padding: 0;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2rem;
+  max-width: none;
+}
+
+/* Desktop - Cards grandes */
+@media (min-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -54,5 +76,10 @@
   .teacher-header-right {
     width: 100%;
     justify-content: flex-end;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }

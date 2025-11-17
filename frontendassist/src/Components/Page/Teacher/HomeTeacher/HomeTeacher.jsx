@@ -13,21 +13,25 @@ export const HomeTeacher = () => {
     const [isAddStudentModalOpen, setIsAddStudentModalOpen] = useState(false);
 
     // Simulación de nombre si no hay contexto
-    const teacherName = userData?.name || 'Nombre del Profesor';
+    const teacherName = userData?.fullname || 'Nombre del Profesor';
 
     const cards = [
         {
             title: 'Gestión de Cursos Asignados',
             description: 'Consulte el listado de cursos que tiene asignados, detalles y estudiantes.',
             icon: '📋',
+            onClick: () => navigate('/Teacher/Courses'),
             actions: [
-                { label: 'Ver Cursos', onClick: () => navigate('/Teacher/Courses') },
+                { label: 'Ver Cursos', 
+                onClick: () => navigate('/Teacher/Courses') },
             ],
+            
         },
         {
             title: 'Agregar Estudiantes',
             description: 'Registre un nuevo estudiante y asígnelo a materias.',
             icon: '🧑‍🎓',
+            onClick: () => setIsAddStudentModalOpen(true),
             actions: [
                 { label: 'Agregar', onClick: () => setIsAddStudentModalOpen(true) },
             ],
@@ -36,6 +40,7 @@ export const HomeTeacher = () => {
             title: 'Toma de Asistencia',
             description: 'Seleccione el curso/materia antes de registrar la asistencia.',
             icon: '✅',
+            onClick: () => navigate('/Teacher/Attendance'),
             actions: [
                 { label: 'Tomar Asistencia', onClick: () => navigate('/Teacher/Attendance') },
             ],
@@ -44,6 +49,7 @@ export const HomeTeacher = () => {
             title: 'Historial de Asistencias',
             description: 'Consulte, edite o exporte el historial de asistencias en formato tabla.',
             icon: '📊',
+            onClick: () => navigate('/Teacher/History'),
             actions: [
                 { label: 'Ver Historial', onClick: () => navigate('/Teacher/History') },
             ],
@@ -52,26 +58,21 @@ export const HomeTeacher = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('userData');
-        window.location.href = '/login';
+        window.location.href = '/';
     };
 
     return (
         <>
             <div className="admin-container">
                 <header className="teacher-header">
-                    <div className="teacher-header-left">
-                        <span style={{fontSize: '1.7rem'}}>🏠</span>
-                        <h1 className="teacher-header-title">Home Docente</h1>
-                    </div>
-                    <div className="teacher-header-right">
-                        <span className="teacher-header-name">👨‍🏫 {teacherName}</span>
-                        <button onClick={handleLogout} className="admin-button" style={{fontWeight: 500}}>Cerrar sesión</button>
-                    </div>
+                    <p className="teacher-header-title"> 🏠 Inicio Docente</p>
+                    <p className="teacher-header-name">👨‍🏫 {teacherName}</p>
+                    <button onClick={handleLogout} className="btn-sesion" >Cerrar sesión</button>
                 </header>
                 <div className="admin-content">
                     <div className="cards-grid">
                         {cards.map((c, i) => (
-                            <Card key={i} title={c.title} description={c.description} icon={c.icon} actions={c.actions} />
+                            <Card key={i} title={c.title} description={c.description} icon={c.icon} actions={c.actions} onClick={c.onClick} />
                         ))}
                     </div>
                 </div>

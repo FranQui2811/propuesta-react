@@ -1,12 +1,5 @@
-/* ==== Estilos generales ==== */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
+.MainLogin{
+    font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #b8e1f7, #7ab8e6, #5e8cc7);
   display: flex;
   align-items: center;
@@ -22,6 +15,7 @@ body {
   align-items: center;
   text-align: center;
   position: relative;
+  justify-content: space-evenly;
   width: 100%;
 }
 
@@ -40,7 +34,6 @@ body {
   animation: slideDown 1s ease-in-out;
 }
 
-/* ==== Caja del login ==== */
 .login-box {
   background: rgba(255, 255, 255, 0.85);
   padding: 45px 40px;
@@ -50,13 +43,9 @@ body {
   animation: fadeIn 1.2s ease-in-out;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideDown 1s ease-in-out;
 }
 
-.login-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
 
 .login-box h2 {
   color: #1e4f78;

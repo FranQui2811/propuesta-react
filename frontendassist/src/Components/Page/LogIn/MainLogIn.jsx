@@ -68,10 +68,12 @@ export const MainLogIn = () => {
       if (userRole === 'Admin') {
             navigate(`/HomeAdmin/`);
       } else if (userRole === 'Professor') {
-            navigate(`/HomeTeacher/`);}
-      else{
+            navigate(`/HomeTeacher/`);
+      } else{
           navigate(`/HomeStudent/`);
-          }
+        }
+      correct();
+      updateUserData(response.data);
       // onSubmitLogin(typerole)
       console.log(userRole);
       console.log(response.data);
@@ -84,7 +86,7 @@ export const MainLogIn = () => {
 
 
   return (
-  <>
+  <div className="MainLogin">
     {/* 🔹 Logo global, fuera del contenedor */}
     <div className="page-logo">
       <img src='https://res.cloudinary.com/miguelgo205/image/upload/v1763329833/ListUr/LogoT.png' alt="Logo" />
@@ -109,7 +111,7 @@ export const MainLogIn = () => {
         </form>
       </div>
     </div>
-  </>
+  </div>
 );
 
 };
