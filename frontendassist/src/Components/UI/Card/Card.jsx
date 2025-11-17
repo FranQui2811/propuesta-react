@@ -1,9 +1,9 @@
 import React from 'react'
 import './Card.css'
 
-export const Card = ({ title, description, icon, actions }) => {
+export const Card = ({ title, description, icon, actions, onClick }) => {
   return (
-    <div className="admin-card">
+    <div className="admin-card" onClick={onClick}>
       <div className="admin-card-head">
         {icon && <span className="admin-card-icon">{icon}</span>}
         <h3 className="admin-card-title">{title}</h3>

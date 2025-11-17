@@ -1,37 +1,53 @@
-import React, { useState } from 'react'
+import React, { useState, useContext} from 'react'
 import './RegisterAssist.css'
 import StudentRow from '../../../UI/TableRow/StudentRow'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import { UserDataContext } from '../../Context/UserDataProvider';
+
 
 export const RegisterAssist = () => {
-  // DATOS QUEMADOS - REEMPLAZAR CON ENDPOINT
-  // const response = await fetch('API_URL/attendance/get-students'); // GET para obtener estudiantes
-  // const students = response.json();
-  
-  const [students, setStudents] = useState([
-    { id: 1, name: 'Juan Pérez', attendance: 'presente', excuse: '' },
-    { id: 2, name: 'María García', attendance: 'presente', excuse: '' },
-    { id: 3, name: 'Carlos López', attendance: 'ausente', excuse: '' },
-    { id: 4, name: 'Ana Martínez', attendance: 'excusa', excuse: 'Cita médica' },
-    { id: 5, name: 'Pedro Rodríguez', attendance: 'presente', excuse: '' },
-    { id: 6, name: 'Laura Fernández', attendance: 'ausente', excuse: '' },
-    { id: 7, name: 'Miguel Sánchez', attendance: 'presente', excuse: '' },
-    { id: 8, name: 'Sofia Díaz', attendance: 'excusa', excuse: 'Problema familiar' },
-  ])
-
-  // DATOS QUEMADOS DE LA CLASE - REEMPLAZAR CON ENDPOINT
-  // const response = await fetch('API_URL/classes/get-class/:classId'); // GET para obtener datos de la clase
-  // const classData = response.json();
-  
-  const classData = {
-    subject: 'Matemáticas',
-    teacher: 'Carlos Rodríguez',
-    date: new Date().toLocaleDateString('es-ES', { 
+  const location = useLocation();
+  const { course } = location.state || {};
+  const { userData } = useContext(UserDataContext);
+  const date = new Date().toLocaleDateString('es-ES', { 
       weekday: 'long', 
       year: 'numeric', 
       month: 'long', 
       day: 'numeric' 
     })
+  // const isoDate = new Date(classData.date).toISOString();
+
+  const correct = () => {
+    Swal.fire({
+      icon: 'success',
+      title: 'Asistencia guardada',
+      text: 'La asistencia ha sido registrada correctamente.',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  const incorrect = () => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un problema al registrar la asistencia.',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  const [students, setStudents] = useState(course?.students?.map(s => ({
+    id: s._id,
+    name: s.fullname,
+    attendance: 'presente',
+    excuse: ''
+    })) || []);
+
+ const classData = {
+    subject: course?.name || 'Nombre de la asignatura',
+    teacher: course?.professor?.fullname || 'Profesor',
+    date: new Date().toISOString()
   }
 
   const navigate = useNavigate()
@@ -54,25 +70,31 @@ export const RegisterAssist = () => {
     ))
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // ENDPOINT PARA GUARDAR ASISTENCIA
-    // const payload = {
-    //   classId: classData.id,
-    //   teacherId: classData.teacherId,
-    //   date: classData.date,
-    //   attendance: students.map(s => ({
-    //     studentId: s.id,
-    //     status: s.attendance,
-    //     excuse: s.excuse || null
-    //   }))
-    // }
-    // const response = await fetch('API_URL/attendance/save', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(payload)
-    // });
-    
-    console.log('Asistencia registrada:', students)
+    const payload = {
+      courseId: course._id,
+      // teacherId: course.professor._id,
+      sessionDate: classData.date,
+      attendanceRecords: students.map(s => ({
+        student: s.id,
+        status: s.attendance,
+        excuseReason: s.excuse || null
+      }))
+    }
+    // const response = axios.post('API_URL/attendance/save', payload);
+try {
+  await axios.post("http://localhost:5000/api/attendance",payload,{
+    headers: {Authorization: `Bearer ${userData?.token}`},
+  });
+  correct()
+  console.log(payload);
+
+
+} catch (error) {
+  console.error("ERROR:", error);
+  incorrect()
+}
   }
 
   return (
@@ -86,7 +108,7 @@ export const RegisterAssist = () => {
         <div className="header-info">
           <h1>Toma de Asistencia clase de {classData.subject}</h1>
           <p className="muted-text">Profesor: {classData.teacher}</p>
-          <p className="muted-text date">{classData.date}</p>
+          <p className="muted-text date">{date}</p>
         </div>
       </div>
 
