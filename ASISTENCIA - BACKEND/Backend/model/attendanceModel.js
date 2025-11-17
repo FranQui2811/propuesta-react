@@ -23,7 +23,7 @@ const attendanceSchema = mongoose.Schema({
         },
         status: { // Presente, Ausente, Tarde/Excusado
             type: String,
-            enum: ['Present', 'Absent', 'Late/Excused'],
+            enum: ['Present', 'Absent', 'Late/Excused', 'presente', 'ausente', 'excusa'],
             default: 'Absent'
         },
         excuseReason: { // Razón de la excusa si el status es 'Late/Excused'
