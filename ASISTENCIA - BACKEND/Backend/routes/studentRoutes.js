@@ -7,7 +7,7 @@ router.route('/')
     // GET: Listar estudiantes (para Admin/Profesor/Estudiante - Estudiante para verificar su propio perfil)
     .get(protect, getStudents) 
     // POST: Crear Estudiante (Solo Admin)
-    .post(protect, authorize(['Admin']), setStudent) 
+    .post(protect, authorize(['Admin', 'Professor']), setStudent) 
 
 router.route('/:id')
     // PUT: Actualizar estudiante (Admin/Professor)

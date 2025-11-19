@@ -52,7 +52,7 @@ export const MyCourses = () => {
           ← Volver
         </button>
 
-        <h1>Mis Cursos Inscritos</h1>
+        <h1 className='tittle'>Mis Cursos Inscritos</h1>
         <div className="title-separator-user"></div>
 
         {/* Verifica si hay cursos para mostrar */}

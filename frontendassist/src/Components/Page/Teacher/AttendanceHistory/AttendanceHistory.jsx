@@ -1,114 +1,118 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect, useContext } from 'react';
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
 import './AttendanceHistory.css';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import { UserDataContext } from '../../Context/UserDataProvider';
+
+const getStudentCounts = (records = []) => {
+  let present = 0;
+  let absent = 0;
+  let excused = 0;
+
+  records.forEach(r => {
+    switch (r.status) {
+      case 'presente':
+          present++;
+          break;
+      case 'ausente':
+          absent++;
+          break;
+      case 'excusa':
+          excused++;
+          break;
+      default:
+          break;
+    }
+});
+
+return { present, absent, excused };
+}
+
+const formatDate = (isoString) => {
+  if (!isoString) return '';
+  return isoString.split('T')[0];
+};
 
 export const AttendanceHistory = () => {
   const navigate = useNavigate();
+  const { userData } = useContext(UserDataContext);
+  const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Datos dummy de historial (ahora incluyen lista de estudiantes por registro)
-  const attendanceRecords = [
-    {
-      id: 1,
-      date: '2024-11-10',
-      course: 'Matemáticas 10A',
-      presentStudents: 22,
-      absentStudents: 3,
-      excused: 0,
-      students: [
-        { name: 'Juan Pérez', status: 'P' },
-        { name: 'María Gómez', status: 'P' },
-        { name: 'Luis Rodríguez', status: 'A' },
-        { name: 'Ana López', status: 'P' },
-        { name: 'Sofía Torres', status: 'J' },
-      ],
-    },
-    {
-      id: 2,
-      date: '2024-11-09',
-      course: 'Español 10B',
-      presentStudents: 25,
-      absentStudents: 2,
-      excused: 1,
-      students: [
-        { name: 'Carlos Díaz', status: 'P' },
-        { name: 'Lucía Martínez', status: 'P' },
-        { name: 'Pedro Ruiz', status: 'A' },
-        { name: 'Marta Gil', status: 'P' },
-      ],
-    },
-    {
-      id: 3,
-      date: '2024-11-08',
-      course: 'Inglés 10C',
-      presentStudents: 20,
-      absentStudents: 1,
-      excused: 1,
-      students: [
-        { name: 'Diego Vega', status: 'P' },
-        { name: 'Irene Salas', status: 'P' },
-        { name: 'Pablo Navarro', status: 'P' },
-        { name: 'Laura Molina', status: 'A' },
-      ],
-    },
-    {
-      id: 4,
-      date: '2024-11-07',
-      course: 'Matemáticas 10A',
-      presentStudents: 23,
-      absentStudents: 2,
-      excused: 0,
-      students: [
-        { name: 'Juan Pérez', status: 'P' },
-        { name: 'María Gómez', status: 'P' },
-        { name: 'Luis Rodríguez', status: 'P' },
-        { name: 'Ana López', status: 'A' },
-      ],
-    },
-    {
-      id: 5,
-      date: '2024-11-06',
-      course: 'Ciencias 11A',
-      presentStudents: 28,
-      absentStudents: 2,
-      excused: 0,
-      students: [
-        { name: 'Carla Ruiz', status: 'P' },
-        { name: 'Óscar Peña', status: 'P' },
-        { name: 'Sandra Ríos', status: 'P' },
-      ],
-    },
-  ];
 
-  const filteredRecords = attendanceRecords.filter(
-    (record) =>
-      record.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      record.date.includes(searchTerm)
-  );
+  useEffect(() => {
+    const fetchAttendanceRecords = async () => {
+      if (!userData?.token) return;
+      try {
+        Swal.fire({
+          title: 'Cargando Asistencias...',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+         
+          }
+        });
+
+      const res = await axios.get(`http://localhost:5000/api/attendance`, {
+        headers: { Authorization: `Bearer ${userData.token}` },
+      });
+      setAttendanceRecords(res.data || []);
+      Swal.close();
+    } catch (err) {
+      Swal.close();
+      const message = err.response?.data?.message || err.message || 'Error al obtener Asistencias';
+      Swal.fire({ icon: 'error', title: 'Error', text: message });
+      
+    }
+  };
+
+    fetchAttendanceRecords();
+  }, [userData]);
+  
+
+const filteredRecords = attendanceRecords.filter(
+    (record) =>{
+      const courseName = record.course?.name || '';
+      const sessionDate = record.sessionDate ? formatDate(record.sessionDate) : '';
+
+      return (
+      courseName.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      sessionDate.includes(searchTerm)
+      );
+    }
+);
 
   // Exportar solo el registro de una clase (cliente) — genera XLSX con lista de estudiantes
   const handleExportRecord = (record) => {
+    const courseName = record.course?.name || 'Curso Desconocido';
+    const dateFormatted = formatDate(record.sessionDate);
+    const { present, absent, excused } = getStudentCounts(record.records);
     // Estructura de datos para la hoja principal
     const metaData = [
-      ['Fecha', record.date],
-      ['Curso', record.course],
-      ['Presentes', record.presentStudents],
-      ['Ausentes', record.absentStudents],
-      ['Justificados', record.excused],
+      ['Fecha', dateFormatted],
+      ['Curso', courseName],
+      ['Presentes', present],
+      ['Ausentes',absent],
+      ['Justificados', excused],
       [],
     ];
     // Encabezado y filas de estudiantes
-    const studentHeader = ['Nombre Estudiante', 'Estado'];
-    const studentsRows = (record.students || []).map((s) => [s.name, s.status]);
-    // Unimos todo en una sola hoja
+    const studentHeader = ['Nombre Estudiante', 'Estado', 'Razón de Excusa'];
+    const studentsRows = (record.records || []).map((r) => [
+      r.student?.fullname,
+      r.status,
+      r.excuseReason || ''
+    ]);
+
+    // Se une todo en una sola hoja
     const wsData = [...metaData, studentHeader, ...studentsRows];
-    // Creamos la hoja y el libro
     const ws = XLSX.utils.aoa_to_sheet(wsData);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Asistencia');
     // Generamos el archivo xlsx
-    const fileName = `historial_${record.course.replace(/\s+/g, '_')}_${record.date}.xlsx`;
+    const fileName = `historial_${courseName.replace(/\s+/g, '_')}_${dateFormatted}.xlsx`;
     XLSX.writeFile(wb, fileName);
     alert(`Archivo descargado: ${fileName}`);
   };
@@ -150,28 +154,16 @@ export const AttendanceHistory = () => {
               </tr>
             </thead>
             <tbody className="table-body">
-              {filteredRecords.map((record) => (
+              {filteredRecords.map((record) => {
+                const { present, absent, excused } = getStudentCounts(record.records);
+                return (
                 <tr key={record.id}>
-                  <td>{record.date}</td>
-                  <td>{record.course}</td>
-                  <td className="present-count">{record.presentStudents}</td>
-                  <td className="absent-count">{record.absentStudents}</td>
-                  <td className="excused-count">{record.excused}</td>
+                  <td>{formatDate(record.sessionDate)}</td>
+                  <td>{record.course?.name}</td>
+                  <td className="present-count">{present}</td>
+                  <td className="absent-count">{absent}</td>
+                  <td className="excused-count">{excused}</td>
                   <td className="action-buttons">
-                    <button
-                      onClick={() => alert(`Ver detalles de ${record.course} - ${record.date}`)}
-                      className="action-btn"
-                      title="Ver"
-                    >
-                      👁️
-                    </button>
-                    <button
-                      onClick={() => alert(`Editar ${record.course} - ${record.date}`)}
-                      className="action-btn"
-                      title="Editar"
-                    >
-                      ✏️
-                    </button>
                     <button
                       onClick={() => handleExportRecord(record)}
                       className="action-btn"
@@ -181,7 +173,8 @@ export const AttendanceHistory = () => {
                     </button>
                   </td>
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>

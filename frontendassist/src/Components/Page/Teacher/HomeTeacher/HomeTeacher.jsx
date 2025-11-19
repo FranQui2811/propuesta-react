@@ -1,6 +1,6 @@
 
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomeTeacher.css';
 import Card from '../../../UI/Card/Card';
@@ -60,6 +60,14 @@ export const HomeTeacher = () => {
         localStorage.removeItem('userData');
         window.location.href = '/';
     };
+
+    // useEffect(() => {
+    //     // Asumiendo que `userData` está vacío o no tiene `token` si el usuario no está logueado
+    //     if (!userData || !userData.token) {
+    //         // Redirige al usuario a la página de login si no hay token
+    //         navigate('/');
+    //     }
+    // }, [userData, navigate]);
 
     return (
         <>

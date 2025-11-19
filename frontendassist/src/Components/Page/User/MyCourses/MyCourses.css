@@ -45,7 +45,7 @@
 /* ============================
    TÍTULO
 =============================== */
-h1 {
+.tittle{
     color: #222;
     text-align: center;
     padding-bottom: 15px; /* Más espacio para la barra */
