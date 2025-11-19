@@ -1,7 +1,7 @@
 import React from 'react'
 import './Card.css'
 
-export const Card = ({ title, description, icon, actions, onClick }) => {
+export const Card = ({ title, description, icon, actions, onClick, className }) => {
   return (
     <div className="admin-card" onClick={onClick}>
       <div className="admin-card-head">
@@ -12,7 +12,7 @@ export const Card = ({ title, description, icon, actions, onClick }) => {
       {actions && actions.length > 0 && (
         <div className="admin-card-actions">
           {actions.map((a, i) => (
-            <button key={i} className="admin-card-action" onClick={a.onClick}>{a.label}</button>
+            <button key={i} className={className} onClick={a.onClick}>{a.label}</button>
           ))}
         </div>
       )}

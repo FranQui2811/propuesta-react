@@ -1,7 +1,11 @@
 /* Asegura que el contenedor principal sea column para HomeTeacher */
-.admin-container {
-  flex-direction: column !important;
-  gap: 0;
+.teacher-container {
+    background-color: var(--primary-cream);
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
 }
 /* HomeTeacher.css */
 :root {
@@ -56,6 +60,18 @@
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   gap: 2rem;
   max-width: none;
+}
+.btnTeacher{
+  background-color: var(--accent-cream);
+  border: none;
+  border-radius: 6px;
+  color: var(--text-dark);
+  padding: 0.6rem 1rem;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+.btnTeacher:hover {
+  background-color: var(--secondary-cream);
 }
 
 /* Desktop - Cards grandes */
