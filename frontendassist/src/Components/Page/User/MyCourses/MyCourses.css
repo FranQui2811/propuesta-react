@@ -1,9 +1,6 @@
-/* ============================
-   CONTENEDOR PRINCIPAL
-=============================== */
+
 .my-courses-container-user {
     padding: 20px;
-    /* Fondo con degradado azul */
     background: linear-gradient(135deg, #b8e1f7, #7ab8e6, #5e8cc7);
     min-height: 100vh;
     display: flex;
@@ -13,19 +10,16 @@
 .my-courses-wrapper-user {
     width: 100%;
     max-width: 1000px;
-    padding: 30px; /* Aumenta el padding dentro del wrapper */
+    padding: 30px;
     border-radius: 15px;
-    /* === CAMBIO CLAVE 3: Fondo del Wrapper === */
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semi-transparente para un look limpio */
+    background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* ============================
-   BOTÓN VOLVER
-=============================== */
+
 .back-button-user {
     /* === CAMBIO CLAVE 1: Estilo del botón (Beige/Arena) === */
-    background-color: #d8c2a8; /* Color beige/arena */
+    background-color: #b8e1f7; /* Color beige/arena */
     border: none; /* Eliminar el borde */
     color: #4c3f2b; /* Color de texto oscuro para contraste */
     padding: 8px 20px;
@@ -38,7 +32,7 @@
 }
 
 .back-button-user:hover {
-    background-color: #c8b298; /* Un tono más oscuro al pasar el ratón */
+    background-color: #83aee7; /* Un tono más oscuro al pasar el ratón */
     color: #4c3f2b;
 }
 

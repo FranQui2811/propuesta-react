@@ -71,7 +71,7 @@ export const HomeTeacher = () => {
 
     return (
         <>
-            <div className="admin-container">
+            <div className="teacher-container">
                 <header className="teacher-header">
                     <p className="teacher-header-title"> 🏠 Inicio Docente</p>
                     <p className="teacher-header-name">👨‍🏫 {teacherName}</p>
@@ -80,7 +80,7 @@ export const HomeTeacher = () => {
                 <div className="admin-content">
                     <div className="cards-grid">
                         {cards.map((c, i) => (
-                            <Card key={i} title={c.title} description={c.description} icon={c.icon} actions={c.actions} onClick={c.onClick} />
+                            <Card className={'btnTeacher'} key={i} title={c.title} description={c.description} icon={c.icon} actions={c.actions} onClick={c.onClick} />
                         ))}
                     </div>
                 </div>

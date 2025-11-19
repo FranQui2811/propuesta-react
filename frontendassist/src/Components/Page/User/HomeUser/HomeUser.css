@@ -5,13 +5,14 @@
   align-items: center;
   min-height: 100vh;
   justify-content: flex-start;
-  padding-top: 3rem;
+  padding: 2rem;
+  background: var(--primary-blue);
 }
 
 /* Paleta azul moderna */
 :root {
   --primary-blue: #e8f0fe;
-  --secondary-blue: #d2e3fc;
+  --secondary-blue: #b6cef1;
   --accent-blue: #a8c7fa;
   --text-dark: #2b2b2b;
   --shadow: rgba(0, 0, 0, 0.1);
@@ -22,36 +23,29 @@
   width: 100%;
   background: var(--secondary-blue);
   border-radius: 12px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 6px var(--shadow);
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: var(--text-dark);
 }
 
-.home-user-header-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
 
 .home-user-title {
-  margin: 0;
   color: var(--text-dark);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
+
 }
 
-.home-user-header-right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
 
 .home-user-name {
   color: var(--text-dark);
-  font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
+
 }
 
 .home-user-logout {
@@ -88,6 +82,21 @@
 .home-user-cards > * {
   flex: 1;
   max-width: 300px;
+}
+
+.btnCardUser{
+  background-color: var(--accent-blue);
+  border: none;
+  border-radius: 6px;
+  color: var(--text-dark);
+  padding: 0.6rem 1rem;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+
+}
+
+.btnCardUser:hover {
+  background-color: var(--secondary-blue);
 }
 
 /* Responsive */

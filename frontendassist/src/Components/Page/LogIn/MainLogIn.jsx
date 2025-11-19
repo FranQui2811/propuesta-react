@@ -70,7 +70,7 @@ export const MainLogIn = () => {
       } else if (userRole === 'Professor') {
             navigate(`/HomeTeacher/`);
       } else{
-          navigate(`/HomeStudent/`);
+          navigate(`/HomeUser/`);
         }
       correct();
       updateUserData(response.data);

@@ -9,7 +9,7 @@ export const HomeUser = () => {
     const navigate = useNavigate();
 
     // Simulación de nombre si no hay contexto
-    const studentName = userData?.name || 'Nombre del Estudiante';
+    const studentName = userData?.fullname || 'Nombre del Estudiante';
 
     const cards = [
         {
@@ -28,35 +28,22 @@ export const HomeUser = () => {
                 { label: 'Ver Asistencia', onClick: () => navigate('/User/AttendanceHistoryUser') },
             ],
         },
-        // {
-        //     title: 'Perfil y Configuración',
-        //     description: 'Actualiza tu información personal o cambia tu contraseña.',
-        //     icon: '⚙️',
-        //     actions: [
-        //         { label: 'Editar Perfil', onClick: () => navigate('/User/Profile') },
-        //     ],
-        // },
     ];
 
     const handleLogout = () => {
         localStorage.removeItem('userData');
-        window.location.href = '/login';
+        window.location.href = '/';
     };
 
     return (
         <>
             <div className="home-user-container">
                 <header className="home-user-header">
-                    <div className="home-user-header-left">
-                        <span style={{ fontSize: '1.7rem' }}>🏠</span>
-                        <h1 className="home-user-title">Inicio del Estudiante</h1>
-                    </div>
-                    <div className="home-user-header-right">
+                        <h1 className="home-user-title">🏠 Inicio del Estudiante</h1>
                         <span className="home-user-name">🎓 {studentName}</span>
                         <button onClick={handleLogout} className="home-user-logout">
                             Cerrar sesión
                         </button>
-                    </div>
                 </header>
 
                 <main className="home-user-main">
@@ -68,6 +55,7 @@ export const HomeUser = () => {
                                 description={card.description}
                                 icon={card.icon}
                                 actions={card.actions}
+                                className={'btnCardUser'}
                             />
                         ))}
                     </div>

@@ -19,9 +19,7 @@ export const ManageCourses = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       if (!userData?.token) return;
-      // const base = process.env.REACT_APP_API_URL || 'http://localhost:5000';
       try {
-        // Mostrar SweetAlert de carga
         Swal.fire({
           title: 'Cargando cursos...',
           allowOutsideClick: false,
