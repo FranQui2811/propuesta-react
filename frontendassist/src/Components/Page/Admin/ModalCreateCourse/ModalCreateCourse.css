@@ -1,0 +1,173 @@
+/* 1. CONFIGURACIÓN DE LA CAJA DE LA MODAL */
+#create-course-modal {
+    width: 90%;
+    max-width: 600px;
+    
+    /* Altura máxima: 90% de la pantalla */
+    max-height: 90vh; 
+    height: auto;     
+    
+    /* Centrado */
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    
+    background: #ffffff !important;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(75, 75, 75, 0.25);
+    padding: 25px; /* Reduje un poco el padding externo */
+    border: none;
+    z-index: 2000;
+    outline: none;
+
+    /* --- FLEXBOX MÁGICO PARA EL SCROLL --- */
+    display: flex;           
+    flex-direction: column;  /* Organiza título y formulario en columna */
+    overflow: hidden;        /* Corta cualquier cosa que intente salirse */
+}
+
+/* Título y Subtítulo (Se quedan fijos arriba) */
+.modal-title-course {
+    color: #d4c5a9;
+    text-align: center;
+    margin: 0 0 5px 0;
+    font-size: 1.6rem;
+    flex-shrink: 0; /* Evita que el título se aplaste */
+}
+
+.modal-divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+    flex-shrink: 0;
+}
+
+/* 2. EL FORMULARIO (ESTO ES LO QUE HARÁ SCROLL) */
+.create-course-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+    /* Habilita el scroll vertical SOLO dentro del formulario */
+    overflow-y: auto; 
+    
+    /* Toma todo el espacio disponible restante en la modal */
+    flex: 1; 
+    
+    /* Espacio interno para que el scroll no tape el contenido */
+    padding-right: 5px; 
+    padding-bottom: 10px; 
+}
+
+/* --- Resto de estilos (Inputs, Checkbox, Botones) --- */
+
+.form-row {
+    display: flex;
+    gap: 15px; /* Pone Nombre y Profesor uno al lado del otro si hay espacio */
+}
+/* Hacemos responsive la fila por si es pantalla pequeña */
+@media (max-width: 500px) {
+    .form-row { flex-direction: column; gap: 10px; }
+}
+
+.form-group-modal {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Para que se distribuyan equitativamente */
+}
+
+.form-group-modal label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.modal-input, .modal-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cfcfcf;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+.modal-input:focus, .modal-select:focus {
+    outline: none;
+    border-color: #d4c5a9;
+    box-shadow: 0 0 0 3px rgba(245, 226, 190, 0.1);
+}
+
+/* SECCIÓN ESTUDIANTES */
+.students-selection-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.student-search-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* Lista de checkboxes */
+.students-checkbox-list {
+    /* Altura máxima controlada para la lista interna */
+    min-height: 100px; 
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background: #fcfcfc;
+    padding: 5px;
+}
+
+.student-checkbox-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.student-checkbox-item:hover { background-color: #f5f5f5; }
+.student-checkbox-item.selected { background-color: #e8f5e9; }
+
+.student-checkbox-item input { margin-right: 10px; cursor: pointer; }
+.student-checkbox-item label { cursor: pointer; width: 100%; margin: 0; }
+
+.st-name { display: block; font-size: 0.9rem; font-weight: 500; color: #333; }
+.st-email { display: block; font-size: 0.75rem; color: #888; }
+
+.selection-count { text-align: right; font-size: 0.8rem; color: #666; margin: 0; }
+
+/* 3. BOTONES (Se quedan al final del scroll del formulario) */
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0; /* Línea sutil para separar botones */
+}
+
+.modal-btn-cancel {
+    background: transparent;
+    border: 1px solid #bbb;
+    color: #666;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal-btn-submit {
+    background-color: #d4c5a9;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.modal-btn-submit:hover { background-color: #e6dcc6; }
