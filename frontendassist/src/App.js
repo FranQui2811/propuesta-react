@@ -12,7 +12,7 @@ import { RegisterAssist } from './Components/Page/Teacher/RegisterAssist/Registe
 import { ManageCourses } from './Components/Page/Teacher/ManageCourses/ManageCourses';
 import { TakeAttendance } from './Components/Page/Teacher/TakeAttendance/TakeAttendance';
 import { AttendanceHistory } from './Components/Page/Teacher/AttendanceHistory/AttendanceHistory';
-
+import { StudentsCourse } from './Components/Page/Teacher/ManageCourses/StudentsCourse/StudentsCourse';
 function App() {
 
   return (
@@ -20,7 +20,7 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<Inicio/>}></Route> */}
 
-        <Route path="/RegisterAssist" element={<RegisterAssist/>}></Route>
+        {/* <Route path="/RegisterAssist" element={<RegisterAssist/>}></Route> */}
         <Route path="/" element={<MainLogIn/>}></Route>
         <Route path="/HomeAdmin" element={<HomeAdmin/>}></Route>
         <Route path="/HomeUser" element={<HomeUser/>}></Route>
@@ -28,11 +28,11 @@ function App() {
         <Route path="/User/AttendanceHistoryUser" element={<AttendanceHistoryUser/>} />
         <Route path="/HomeTeacher" element={<HomeTeacher/>}></Route>
         <Route path="/Teacher/Courses" element={<ManageCourses/>}></Route>
+        <Route path="/Teacher/Courses/StudentsCourse" element={<StudentsCourse/>}></Route>
         <Route path="/Teacher/Attendance" element={<TakeAttendance/>}></Route>
         <Route path="/Teacher/History" element={<AttendanceHistory/>}></Route>
         <Route path="/Teacher/Register/Assist" element={<RegisterAssist/>}></Route>
         <Route path="/RecoverPassword" element={<RecoverPassword/>}></Route>
-
         <Route path="*" element="Not Found"></Route>
       </Routes>
     </div>

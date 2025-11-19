@@ -10,6 +10,12 @@ export const ManageCourses = () => {
   const { userData } = useContext(UserDataContext);
   const [courses, setCourses] = useState([]);
 
+
+    const handleSelectCourse = (course) => {
+    navigate(`/Teacher/Courses/StudentsCourse`, { state: { course } });
+
+  };
+
   useEffect(() => {
     const fetchCourses = async () => {
       if (!userData?.token) return;
@@ -74,7 +80,7 @@ export const ManageCourses = () => {
                 <strong>Estudiantes:</strong> {Array.isArray(course.students) ? course.students.length : (course.students || 0)}
               </p>
               <button
-                onClick={() => navigate(`/Teacher/Courses/${course._id || course.id}`)}
+                onClick={() => handleSelectCourse(course)}
                 className="view-students-btn"
               >
                 Ver Estudiantes
