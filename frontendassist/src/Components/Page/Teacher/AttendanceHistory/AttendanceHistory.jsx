@@ -121,7 +121,7 @@ const filteredRecords = attendanceRecords.filter(
     <div className="attendance-history-container">
       <div className="attendance-history-wrapper">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/HomeTeacher')}
           className="back-button"
         >
           ← Volver

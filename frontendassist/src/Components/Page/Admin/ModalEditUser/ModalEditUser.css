@@ -1,0 +1,146 @@
+/* 1. CONTENEDOR PRINCIPAL (Igual que el Delete modal) */
+#edit-user-modal {
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    max-height: 85vh;
+    
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    
+    background: #ffffff !important;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    padding: 25px;
+    border: none;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    outline: none;
+}
+
+/* Título Azul/Primario (Diferente al Delete que era rojo) */
+.modal-title-primary {
+    color: #d4c5a9; /* Color acento de tu app */
+    text-align: center;
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+}
+
+.modal-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* --- LISTA Y BÚSQUEDA (Reutilizados) --- */
+.search-input-modal {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.user-list-container {
+    height: 250px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.user-list { list-style: none; padding: 0; margin: 0; }
+
+.user-list-item {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.user-list-item:hover { background-color: #e8eaf6; } /* Hover azul claro */
+
+.user-info-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    color: #333;
+}
+
+.user-email-small {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* --- FORMULARIO DE EDICIÓN --- */
+.edit-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.form-group-modal label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Importante para que no se salga */
+}
+
+.modal-input:focus {
+    border-color: #5c6bc0;
+    outline: none;
+}
+
+/* --- BOTONES --- */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between; /* Separar "Volver" de "Guardar" */
+    align-items: center;
+    margin-top: 20px;
+}
+
+.modal-btn-cancel {
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #666;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-btn-submit {
+    background-color: #5c6bc0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-btn-secondary {
+    background: none;
+    border: none;
+    color: #5c6bc0;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    padding: 0;
+}
